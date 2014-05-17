@@ -20,7 +20,7 @@ object FunSets {
   /**
    * Returns the set of the one given element.
    */
-  def singletonSet(elem: Int): Set = (value: Int) => elem == value
+  def singletonSet(elem: Int): Int => Boolean = (value: Int) => elem == value
 
   /**
    * Returns the union of the two given sets,
