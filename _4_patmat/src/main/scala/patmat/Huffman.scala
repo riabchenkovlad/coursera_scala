@@ -26,9 +26,15 @@ object Huffman {
 
   // Part 1: Basics
 
-  def weight(tree: CodeTree): Int = ??? // tree match ...
+  def weight(tree: CodeTree): Int = tree match {
+    case Leaf(_, weight) => weight
+    case Fork(l, r, _, _) => weight(l) + weight(r)
+  }
 
-  def chars(tree: CodeTree): List[Char] = ??? // tree match ...
+  def chars(tree: CodeTree): List[Char] = tree match {
+    case Leaf(char, _) => List(char)
+    case Fork(l, r, _, _) => chars(l) ::: chars(r)
+  }
 
   def makeCodeTree(left: CodeTree, right: CodeTree) =
     Fork(left, right, chars(left) ::: chars(right), weight(left) + weight(right))
@@ -71,7 +77,27 @@ object Huffman {
    *       println("integer is  : "+ theInt)
    *   }
    */
-  def times(chars: List[Char]): List[(Char, Int)] = ???
+  def times(chars: List[Char]): List[(Char, Int)] = chars match{
+    case Nil => Nil
+    
+    case _:List[_] => {
+      def process(result:List[(Char, Int)], str: List[Char]): List[(Char, Int)] = str match{
+        case Nil => result
+        
+        case _ => result match{
+          case Nil => List((str.head, 1))
+          case _ => 
+            if (result.head._1 == str.head)
+              process((str.head, result.head._2 + 1) :: result.tail, str.tail)
+            else
+              process( result.head :: process(result.tail, List(str.head)), str.tail)
+        }
+        
+      }
+      process(List((chars.head, 1)), chars.tail)
+    }
+    
+  }
 
   /**
    * Returns a list of `Leaf` nodes for a given frequency table `freqs`.
@@ -80,12 +106,21 @@ object Huffman {
    * head of the list should have the smallest weight), where the weight
    * of a leaf is the frequency of the character.
    */
-  def makeOrderedLeafList(freqs: List[(Char, Int)]): List[Leaf] = ???
+  def makeOrderedLeafList(freqs: List[(Char, Int)]): List[Leaf] = {
+    if (freqs == Nil)
+      Nil
+    else{
+      val sorted = freqs.sortWith((a1:(Char, Int), a2:(Char, Int)) => 
+        (a1._2 - a2._2) < 0
+      )
+      List(Leaf(sorted.head._1, sorted.head._2)) ::: makeOrderedLeafList(sorted.tail)
+    }
+  }
 
   /**
    * Checks whether the list `trees` contains only one single code tree.
    */
-  def singleton(trees: List[CodeTree]): Boolean = ???
+  def singleton(trees: List[CodeTree]): Boolean = trees.tail == Nil
 
   /**
    * The parameter `trees` of this function is a list of code trees ordered
