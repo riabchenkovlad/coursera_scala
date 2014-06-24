@@ -1,0 +1,12 @@
+[0m[[0minfo[0m] [0mChecking file D:\eclipse-scala\workspace\coursera\_5_forcomp\src\main\scala\common\package.scala... OK![0m
+[0m[[0minfo[0m] [0mChecking file D:\eclipse-scala\workspace\coursera\_5_forcomp\src\main\scala\forcomp\Anagrams.scala...[0m
+[0m[[0minfo[0m] [0m  1. warning at line 87 character 35:[0m
+[0m[[0minfo[0m] [0m     Avoid using mutable collections.[0m
+[0m[[0minfo[0m] [0m  2. warning at line 90 character 38:[0m
+[0m[[0minfo[0m] [0m     Avoid using mutable collections.[0m
+[0m[[0minfo[0m] [0mChecking file D:\eclipse-scala\workspace\coursera\_5_forcomp\src\main\scala\forcomp\package.scala... OK![0m
+[0m[[0minfo[0m] [0mProcessed 3 file(s)[0m
+[0m[[0minfo[0m] [0mFound 0 errors[0m
+[0m[[0minfo[0m] [0mFound 2 warnings[0m
+[0m[[0minfo[0m] [0mConsult the style guide at https://class.coursera.org/progfun-004/wiki/ScalaStyleGuide[0m
+[0m[[0minfo[0m] [0mStyle Score: 98 out of 100[0m
